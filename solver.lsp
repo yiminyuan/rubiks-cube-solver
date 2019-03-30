@@ -362,7 +362,7 @@
                 (copy-list up)
                 (append ; left
                     (list (nth 0 left) (nth 1 left) (nth 2 left))
-                    (list (nth 5 left) (nth 4 left) (nth 3 left))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
                     (list (nth 6 in) (nth 7 in) (nth 8 in))
                 )
                 (append ; down
@@ -377,7 +377,7 @@
                 )
                 (append ; out
                     (list (nth 8 left) (nth 7 left) (nth 6 left))
-                    (list (nth 5 out) (nth 4 out) (nth 3 out))
+                    (list (nth 3 out) (nth 4 out) (nth 5 out))
                     (list (nth 6 out) (nth 7 out) (nth 8 out))
                 )           
             )
@@ -391,7 +391,7 @@
                 (copy-list up)
                 (append ; left
                     (list (nth 0 left) (nth 1 left) (nth 2 left))
-                    (list (nth 5 left) (nth 4 left) (nth 3 left))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
                     (list (nth 2 out) (nth 1 out) (nth 0 out))
                 )
                 (append ; down
@@ -406,7 +406,7 @@
                 )
                 (append ; out
                     (list (nth 8 right) (nth 7 right) (nth 6 right))
-                    (list (nth 5 out) (nth 4 out) (nth 3 out))
+                    (list (nth 3 out) (nth 4 out) (nth 5 out))
                     (list (nth 6 out) (nth 7 out) (nth 8 out))
                 )           
             )
