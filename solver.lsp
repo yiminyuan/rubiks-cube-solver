@@ -45,3 +45,6 @@
         (t t)
     )
 )
+
+(defun next-states (s)
+)
