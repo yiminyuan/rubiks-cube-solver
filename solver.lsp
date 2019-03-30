@@ -232,3 +232,184 @@
         )
     )
 )
+
+(defun next-state-3 (s)
+    (let
+        (
+            (in    (nth 0 s))
+            (up    (nth 1 s))
+            (left  (nth 2 s))
+            (down  (nth 3 s))
+            (right (nth 4 s))
+            (out   (nth 5 s))
+        )
+        (list
+            ; 0th layer (counterclockwise)
+            (list
+                (append
+                    (list (nth 2 in) (nth 5 in) (nth 8 in))
+                    (list (nth 1 in) (nth 4 in) (nth 7 in))
+                    (list (nth 0 in) (nth 3 in) (nth 6 in))
+                )
+                (append
+                    (list (nth 0 up) (nth 1 up) (nth 2 up))
+                    (list (nth 3 up) (nth 4 up) (nth 5 up))
+                    (list (nth 0 right) (nth 3 right) (nth 6 right))
+                )
+                (append
+                    (list (nth 0 left) (nth 1 left) (nth 8 up))
+                    (list (nth 3 left) (nth 4 left) (nth 7 up))
+                    (list (nth 6 left) (nth 7 left) (nth 6 up))
+                )
+                (append
+                    (list (nth 2 left) (nth 5 left) (nth 8 left))
+                    (list (nth 3 down) (nth 4 down) (nth 5 down))
+                    (list (nth 6 down) (nth 7 down) (nth 8 down))
+                )
+                (append
+                    (list (nth 2 down) (nth 1 right) (nth 2 right))
+                    (list (nth 1 down) (nth 4 right) (nth 5 right))
+                    (list (nth 0 down) (nth 7 right) (nth 8 right))
+                )
+                (copy-list out)
+            )
+            ; 0th layer (clockwise)
+            (list
+                (append
+                    (list (nth 6 in) (nth 3 in) (nth 0 in))
+                    (list (nth 7 in) (nth 4 in) (nth 1 in))
+                    (list (nth 8 in) (nth 5 in) (nth 2 in))
+                )
+                (append
+                    (list (nth 0 up) (nth 1 up) (nth 2 up))
+                    (list (nth 3 up) (nth 4 up) (nth 5 up))
+                    (list (nth 8 left) (nth 5 left) (nth 2 left))
+                )
+                (append
+                    (list (nth 0 left) (nth 1 left) (nth 0 down))
+                    (list (nth 3 left) (nth 4 left) (nth 1 down))
+                    (list (nth 6 left) (nth 7 left) (nth 2 down))
+                )
+                (append
+                    (list (nth 6 right) (nth 3 right) (nth 0 right))
+                    (list (nth 3 down) (nth 4 down) (nth 5 down))
+                    (list (nth 6 down) (nth 7 down) (nth 8 down))
+                )
+                (append
+                    (list (nth 6 up) (nth 1 right) (nth 2 right))
+                    (list (nth 7 up) (nth 4 right) (nth 5 right))
+                    (list (nth 8 up) (nth 7 right) (nth 8 right))
+                )
+                (copy-list out)
+            )
+            ; 1st layer (counterclockwise)
+            (list
+                (copy-list in)
+                (append
+                    (list (nth 0 up) (nth 1 up) (nth 2 up))
+                    (list (nth 1 right) (nth 4 right) (nth 7 right))
+                    (list (nth 6 up) (nth 7 up) (nth 8 up))
+                )
+                (append
+                    (list (nth 0 left) (nth 5 up) (nth 2 left))
+                    (list (nth 3 left) (nth 4 up) (nth 5 left))
+                    (list (nth 6 left) (nth 3 up) (nth 8 left))
+                )
+                (append
+                    (list (nth 0 down) (nth 1 down) (nth 2 down))
+                    (list (nth 1 left) (nth 4 left) (nth 7 left))
+                    (list (nth 6 down) (nth 7 down) (nth 8 down))
+                )
+                (append
+                    (list (nth 0 right) (nth 5 down) (nth 2 right))
+                    (list (nth 3 right) (nth 4 down) (nth 5 right))
+                    (list (nth 6 right) (nth 3 down) (nth 8 right))
+                )
+                (copy-list out)
+            )
+            ; 1st layer (clockwise)
+            (list
+                (copy-list in)
+                (append
+                    (list (nth 0 up) (nth 1 up) (nth 2 up))
+                    (list (nth 7 left) (nth 4 left) (nth 1 left))
+                    (list (nth 6 up) (nth 7 up) (nth 8 up))
+                )
+                (append
+                    (list (nth 0 left) (nth 3 down) (nth 2 left))
+                    (list (nth 3 left) (nth 4 down) (nth 5 left))
+                    (list (nth 6 left) (nth 5 down) (nth 8 left))
+                )
+                (append
+                    (list (nth 0 down) (nth 1 down) (nth 2 down))
+                    (list (nth 7 right) (nth 4 right) (nth 1 right))
+                    (list (nth 6 down) (nth 7 down) (nth 8 down))
+                )
+                (append
+                    (list (nth 0 right) (nth 3 up) (nth 2 right))
+                    (list (nth 3 right) (nth 4 up) (nth 5 right))
+                    (list (nth 6 right) (nth 5 up) (nth 8 right))
+                )
+                (copy-list out)
+            )
+            ; 2nd layer (counterclockwise)
+            (list
+                (copy-list in)
+                (append
+                    (list (nth 2 right) (nth 5 right) (nth 8 right))
+                    (list (nth 3 up) (nth 4 up) (nth 5 up))
+                    (list (nth 6 up) (nth 7 up) (nth 8 up))
+                )
+                (append
+                    (list (nth 2 up) (nth 1 left) (nth 2 left))
+                    (list (nth 1 up) (nth 4 left) (nth 5 left))
+                    (list (nth 0 up) (nth 7 left) (nth 8 left))
+                )
+                (append
+                    (list (nth 0 down) (nth 1 down) (nth 2 down))
+                    (list (nth 3 down) (nth 4 down) (nth 5 down))
+                    (list (nth 0 left) (nth 3 left) (nth 6 left))
+                )
+                (append
+                    (list (nth 0 right) (nth 1 right) (nth 8 down))
+                    (list (nth 3 right) (nth 4 right) (nth 7 down))
+                    (list (nth 6 right) (nth 7 right) (nth 6 down))
+                )
+                (append
+                    (list (nth 6 out) (nth 3 out) (nth 0 out))
+                    (list (nth 7 out) (nth 4 out) (nth 1 out))
+                    (list (nth 8 out) (nth 5 out) (nth 2 out))
+                )
+            )
+            ; 2nd layer (clockwise)
+            (list
+                (copy-list in)
+                (append
+                    (list (nth 6 left) (nth 3 left) (nth 0 left))
+                    (list (nth 3 up) (nth 4 up) (nth 5 up))
+                    (list (nth 6 up) (nth 7 up) (nth 8 up))
+                )
+                (append
+                    (list (nth 6 down) (nth 1 left) (nth 2 left))
+                    (list (nth 7 down) (nth 4 left) (nth 5 left))
+                    (list (nth 8 down) (nth 7 left) (nth 8 left))
+                )
+                (append
+                    (list (nth 0 down) (nth 1 down) (nth 2 down))
+                    (list (nth 3 down) (nth 4 down) (nth 5 down))
+                    (list (nth 8 right) (nth 5 right) (nth 2 right))
+                )
+                (append
+                    (list (nth 0 right) (nth 1 right) (nth 0 up))
+                    (list (nth 3 right) (nth 4 right) (nth 1 up))
+                    (list (nth 6 right) (nth 7 right) (nth 2 up))
+                )
+                (append
+                    (list (nth 2 out) (nth 5 out) (nth 8 out))
+                    (list (nth 1 out) (nth 4 out) (nth 7 out))
+                    (list (nth 0 out) (nth 3 out) (nth 6 out))
+                )
+            )
+        )
+    )
+)
