@@ -233,6 +233,188 @@
     )
 )
 
+(defun next-state-2 (s)
+    (let
+        (
+            (in    (nth 0 s))
+            (up    (nth 1 s))
+            (left  (nth 2 s))
+            (down  (nth 3 s))
+            (right (nth 4 s))
+            (out   (nth 5 s))
+        )
+        (list
+            ; 0th row (left)
+            (list
+                (append ;in
+                    (list (nth 0 right) (nth 1 right) (nth 2 right))
+                    (list (nth 3 in) (nth 4 in) (nth 5 in))
+                    (list (nth 6 in) (nth 7 in) (nth 8 in))
+                )
+                (append ;up 
+                    (list (nth 6 up) (nth 3 up) (nth 0 up))
+                    (list (nth 7 up) (nth 4 up) (nth 1 up))
+                    (list (nth 8 up) (nth 5 up) (nth 2 up))
+                )
+                (append ;left 
+                    (list (nth 0 in) (nth 1 in) (nth 2 in))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
+                    (list (nth 6 left) (nth 7 left) (nth 8 left))
+                )
+                (copy-list down)
+                (append ; right 
+                    (list (nth 8 out) (nth 7 out) (nth 6 out))
+                    (list (nth 3 right) (nth 4 right) (nth 5 right))
+                    (list (nth 6 right) (nth 7 right) (nth 8 right))
+                )
+                (append ; out 
+                    (list (nth 0 out) (nth 1 out) (nth 2 out))
+                    (list (nth 3 out) (nth 4 out) (nth 5 out))
+                    (list (nth 2 left) (nth 1 left) (nth 0 left))
+                )
+            )
+            ; 0th right (right)
+            (list
+                (append ; in
+                    (list (nth 0 left) (nth 1 left) (nth 2 left))
+                    (list (nth 3 in) (nth 4 in) (nth 5 in))
+                    (list (nth 6 in) (nth 7 in) (nth 8 in))
+                )
+                (append ; up
+                    (list (nth 2 up) (nth 5 up) (nth 8 up))
+                    (list (nth 1 up) (nth 4 up) (nth 7 up))
+                    (list (nth 0 up) (nth 3 up) (nth 6 up))
+                )
+                (append ; left
+                    (list (nth 8 out) (nth 7 out) (nth 6 out))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
+                    (list (nth 6 left) (nth 7 left) (nth 8 left))
+                )
+                (copy-list down)
+                (append ; right
+                    (list (nth 0 in) (nth 1 in) (nth 2 in))
+                    (list (nth 3 right) (nth 4 right) (nth 5 right))
+                    (list (nth 6 right) (nth 7 right) (nth 8 right))
+                )
+                (append ; out
+                    (list (nth 0 out) (nth 1 out) (nth 2 out))
+                    (list (nth 3 out) (nth 4 out) (nth 5 out))
+                    (list (nth 2 right) (nth 1 right) (nth 0 right))
+                )
+            )
+            ; 1st row (left)
+            (list
+                (append ; in
+                    (list (nth 0 in) (nth 1 in) (nth 2 in))
+                    (list (nth 3 right) (nth 4 right) (nth 5 right))
+                    (list (nth 6 in) (nth 7 in) (nth 8 in))
+                )
+                (copy-list up)
+                (append ; left
+                    (list (nth 0 left) (nth 1 left) (nth 2 left))
+                    (list (nth 3 in) (nth 4 in) (nth 5 in))
+                    (list (nth 6 left) (nth 7 left) (nth 8 left))
+                )
+                (copy-list down)
+                (append ; right
+                    (list (nth 0 right) (nth 1 right) (nth 2 right))
+                    (list (nth 5 out) (nth 4 out) (nth 3 out))
+                    (list (nth 6 right) (nth 7 right) (nth 8 right))
+                )
+                (append ; out
+                    (list (nth 0 out) (nth 1 out) (nth 2 out))
+                    (list (nth 5 left) (nth 4 left) (nth 3 left))
+                    (list (nth 6 out) (nth 7 out) (nth 8 out))
+                )
+            )
+            ; 1st row (right)
+            (list
+                (append ; in
+                    (list (nth 0 in) (nth 1 in) (nth 2 in))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
+                    (list (nth 6 in) (nth 7 in) (nth 8 in))
+                )
+                (copy-list up)
+                (append ; left
+                    (list (nth 0 left) (nth 1 left) (nth 2 left))
+                    (list (nth 5 out) (nth 4 out) (nth 3 out))
+                    (list (nth 6 left) (nth 7 left) (nth 8 left))
+                )
+                (copy-list down)
+                (append ; right
+                    (list (nth 0 right) (nth 1 right) (nth 2 right))
+                    (list (nth 3 in) (nth 4 in) (nth 5 in))
+                    (list (nth 6 right) (nth 7 right) (nth 8 right))
+                )
+                (append ; out
+                    (list (nth 0 out) (nth 1 out) (nth 2 out))
+                    (list (nth 5 right) (nth 4 right) (nth 3 right))
+                    (list (nth 6 out) (nth 7 out) (nth 8 out))
+                )
+            )
+            ; 2nd row (left)
+            (list
+                 (append ; in
+                    (list (nth 0 in) (nth 1 in) (nth 2 in))
+                    (list (nth 3 in) (nth 4 in) (nth 5 in))
+                    (list (nth 6 right) (nth 7 right) (nth 8 right))
+                )
+                (copy-list up)
+                (append ; left
+                    (list (nth 0 left) (nth 1 left) (nth 2 left))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
+                    (list (nth 6 in) (nth 7 in) (nth 8 in))
+                )
+                (append ; down
+                    (list (nth 2 down) (nth 5 down) (nth 8 down))
+                    (list (nth 1 down) (nth 4 down) (nth 7 down))
+                    (list (nth 0 down) (nth 3 down) (nth 6 down))
+                )
+                (append ; right
+                    (list (nth 0 right) (nth 1 right) (nth 2 right))
+                    (list (nth 3 right) (nth 4 right) (nth 5 right))
+                    (list (nth 2 out) (nth 1 out) (nth 0 out))
+                )
+                (append ; out
+                    (list (nth 8 left) (nth 7 left) (nth 6 left))
+                    (list (nth 3 out) (nth 4 out) (nth 5 out))
+                    (list (nth 6 out) (nth 7 out) (nth 8 out))
+                )           
+            )
+            ; 2nd row (right)
+            (list
+                 (append ; in
+                    (list (nth 0 in) (nth 1 in) (nth 2 in))
+                    (list (nth 3 in) (nth 4 in) (nth 5 in))
+                    (list (nth 6 left) (nth 7 left) (nth 8 left))
+                )
+                (copy-list up)
+                (append ; left
+                    (list (nth 0 left) (nth 1 left) (nth 2 left))
+                    (list (nth 3 left) (nth 4 left) (nth 5 left))
+                    (list (nth 2 out) (nth 1 out) (nth 0 out))
+                )
+                (append ; down
+                    (list (nth 6 down) (nth 3 down) (nth 0 down))
+                    (list (nth 7 down) (nth 4 down) (nth 1 down))
+                    (list (nth 8 down) (nth 5 down) (nth 2 down))
+                )
+                (append ; right
+                    (list (nth 0 right) (nth 1 right) (nth 2 right))
+                    (list (nth 3 right) (nth 4 right) (nth 5 right))
+                    (list (nth 6 in) (nth 7 in) (nth 8 in))
+                )
+                (append ; out
+                    (list (nth 8 right) (nth 7 right) (nth 6 right))
+                    (list (nth 3 out) (nth 4 out) (nth 5 out))
+                    (list (nth 6 out) (nth 7 out) (nth 8 out))
+                )           
+            )
+        )
+    )
+
+
+)
 (defun next-state-3 (s)
     (let
         (
