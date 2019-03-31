@@ -647,7 +647,7 @@
                 )
                 (append ; out 
                     (list (nth 3 left) (nth 2 left))
-                    (list (nth 0 out) (nth 1 out))
+                    (list (nth 2 out) (nth 3 out))
                 )
             )
             ; 1st row (right)
@@ -671,7 +671,7 @@
                 )
                 (append ; out 
                     (list (nth 3 right) (nth 2 right))
-                    (list (nth 0 out) (nth 1 out))
+                    (list (nth 2 out) (nth 3 out))
                 )
             )
         )
@@ -959,7 +959,7 @@
                 )
                 (append
                     (list (nth 0 right) (nth 0 up))
-                    (list (nth 1 right) (nth 1 up))
+                    (list (nth 2 right) (nth 1 up))
                 )
                 (append
                     (list (nth 1 out) (nth 3 out))
