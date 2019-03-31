@@ -50,6 +50,7 @@
 ;; next-state-2
 ;; next-state-3
 (defun next-states (s)
+    (append (next-state-1 s) (next-state-2 s) (next-state-3 s))
 )
 
 (defun next-state-1 (s)
@@ -594,4 +595,25 @@
             )
         )
     )
+)
+
+(defun h0 (s)
+    0
+)
+
+(defun reload()
+    (load "solver.lsp")
+)
+
+(defun load-a-star()
+    (load "a-star.lsp")
+)
+
+(defun reload-all()
+    (reload)
+    (load-a-star)
+)
+
+(defun solver (s h)
+    (a* s #'goal-test #'next-states h)
 )
